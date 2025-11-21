@@ -1,0 +1,31 @@
+{
+  "name": "dotnet-8-webapi-devcontainer",
+  "dockerFile": "Dockerfile",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/azure-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "dotnet.server.useOmnisharp": false
+      },
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-vscode.vscode-typescript-next",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig"
+      ]
+    }
+  },
+  "postCreateCommand": "dotnet --info && dotnet restore src/WebApi/WebApi.csproj",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Web API",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
